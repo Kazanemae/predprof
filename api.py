@@ -1,7 +1,7 @@
 from requests import get, post
 
 
-TOKEN = ''
+TOKEN = 'ppo_9_30000'
 HEADERS = {'X-Auth-Token': TOKEN}
 
 
@@ -37,7 +37,7 @@ def post_answer(count: int, rooms: list[int], date: str):
         },
         "date": date
         }
-    req = post(f'https://olimp.miet.ru/ppo_it_final/')
+    req = post(f'https://olimp.miet.ru/ppo_it_final/', body=body)
 
     answer = req.json()['message']
 
