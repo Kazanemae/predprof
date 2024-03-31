@@ -1,31 +1,54 @@
-from flask import Flask, render_template, jsonify
-
-app = Flask(__name__)
-
-
-@app.route('/')
-def index():
-    data = {
-        "date": {"data": 1674594000, "description": "Татьянин день"},
-        "rooms_count": {"data": 3, "description": "Количество комнат на этаже"},
-        "windows_for_room": {"data": [3, 2, 1],
-                             "description": "Количество окон в каждой из комнат на этаже слева направо"},
-        "windows": {
-            "data": {
-                "floor_1": [False, True, False, True, False, False],
-                "floor_2": [True, True, True, False, False, True],
-                "floor_3": [False, False, True, False, True, False],
-                "floor_4": [False, False, False, True, False, True]
-            },
-            "description": "Окна по этажам, в которых горит свет"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Windows and Rooms</title>
+    <style>
+        table {
+            border-collapse: collapse;
         }
-    }
-    wList = [[1, 1, 1, 2, 2, 3], [4, 4, 4, 5, 5, 6], [7, 7, 7, 8, 8, 9], [10, 10, 10, 11, 11, 12]]
-    return render_template('index2.html', rooms_count=data['rooms_count']['data'],
-                           windows_for_room=data['windows_for_room']['data'],
-                           windows=data['windows']['data'], n=len(data["windows"]["data"]), mas=wList,
-                           lenMas=len(wList), kolvo=len(wList[0]))
+        table, th, td {
+            border: 1px solid black;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+        .light-on {
+            background-color: yellow;
+        }
+        .light-off {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Windows and Rooms Illumination</h1>
 
+    <table>
+        <tr>
+            <th></th>
+            {% for window_num in range(1, 7) %}
+                <th>Window {{ window_num }}</th>
+            {% endfor %}
+        </tr>
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+        {% set room_num = rooms_count - 1 %}
+        {% for floor_num in range(n, 0, -1) %}
+            <tr>
+                <td>Floor {{ floor_num }}</td>
+                {% for window_num in range(1, kolvo + 1) %}
+
+                    {% set is_lit = windows['floor_' ~ floor_num][window_num - 1] %}
+                    <td class="{% if is_lit %}light-on{% else %}light-off{% endif %}">{{mas[floor_num - 1][window_num - 1]}}</td>
+                    {% if window_num % windows_for_room[room_num] == 1 %}
+
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
