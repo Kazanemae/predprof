@@ -43,6 +43,3 @@ def get_info(date: str): #dd-mm-yy
     }
 
     return data_to_return
-
-
-print(get_info('25-01-23'))

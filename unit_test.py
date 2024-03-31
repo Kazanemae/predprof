@@ -21,5 +21,3 @@ class TestApp(unittest.TestCase):
         self.assertAlmostEqual(get_info('25-01-23'), {'window_list': [[1, 1, 1, 2, 2, 3], [4, 4, 4, 5, 5, 6], [7, 7, 7, 8, 8, 9], [10, 10, 10, 11, 11, 12]], 'true_rooms': [1, 2, 4, 6, 7, 8, 11, 12], 'true_rooms_count': 8, 'rooms_count': 3, 'windows': [3, 2, 1], 'server_answer': 'Wrong data', 'date': '25-01-23'})
 
 unittest.main()
-
-
