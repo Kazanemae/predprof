@@ -29,7 +29,7 @@ def get_info(date: str): #dd-mm-yy
         for windows_for_room in data['windows_for_room_list']:
             room += 1
             for __ in range(windows_for_room):
-                room_list.append(room)
+                room_list.append(str(room))
         window_list.append(room_list)
 
     data_to_return = {
