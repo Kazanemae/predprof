@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Rehearsal Rooms</title>
+    <title>Windows and Rooms</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Student Rehearsal Rooms Information</h1>
-        
-        <sript src='https://github.com/Kazanemae/predprof/blob/main/script.js'></sript>
-        <div id="table-container"></div>
-    </div>
+    <h1>Windows and Rooms Illumination</h1>
+
+    <table>
+        <tr>
+            <th></th>
+            {% for window_num in range(1, 7) %}
+                <th>Window {{ window_num }}</th>
+            {% endfor %}
+        </tr>
+
+        {% set room_num = rooms_count - 1 %}
+        {% for floor_num in range(n, 0, -1) %}
+            <tr>
+                <td>Floor {{ floor_num }}</td>
+                {% for window_num in range(1, kolvo + 1) %}
+
+                    {% set is_lit = windows['floor_' ~ floor_num][window_num - 1] %}
+                    <td class="{% if is_lit %}light-on{% else %}light-off{% endif %}">{{mas[floor_num - 1][window_num - 1]}}</td>
+                    {% if window_num % windows_for_room[room_num] == 1 %}
+
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        // количество комнат
+        <p>количество комнат: </p> // тут впишешь кол-во комнат после
+        // вывод массива комнат номеров()
+        <p>вывод массива комнат номеров: </p> // пишешь вывод после
+    </table>
+
 </body>
 </html>
