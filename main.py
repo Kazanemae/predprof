@@ -72,29 +72,29 @@ comnaty = get_info(stroka)["true_rooms_count"]
 result = get_info(stroka)["server_answer"]
 
 
-def insertINtoBD(ans):
-    n = len(ans["windows"]["data"])
-    # print('|'.join(ans["windows"]["data"]))
-    dataForWindows = []
-    for i in range(n):
-        dataForWindows.append('|'.join(ans["windows"]["data"]["floor_" + str(i + 1)]))
-    s1 = '!'.join(dataForWindows)
-    s2 = list(map(str, ans["windows_for_room"]["data"]))
-    windows_for_rooms = '|'.join(s2)
-    cursor = connection.cursor()
-    id = len(cursor.execute("SELECT * FROM res").fetchall())
-    with connection:
-        cursor = connection.cursor()
-        cursor.execute(
-            """INSERT INTO res (id, data, roomscount, zapolnenieRooms, dataForWindows)
-            VALUES  (?, ?, ?, ?, ?)""",
-            (id, ans["date"]["data"], ans["rooms_count"]["data"], windows_for_rooms, s1))
-        connection.commit()
-    print(cursor.execute("SELECT * FROM res").fetchall())
+# def insertINtoBD(ans):
+#     n = len(ans["windows"]["data"])
+#     # print('|'.join(ans["windows"]["data"]))
+#     dataForWindows = []
+#     for i in range(n):
+#         dataForWindows.append(('|'.join(str(ans["windows"]["data"]["floor_" + str(i + 1)]))))
+#     s1 = '!'.join(dataForWindows)
+#     s2 = list(map(str, ans["windows_for_flat"]["data"]))
+#     windows_for_rooms = '|'.join(s2)
+#     cursor = connection.cursor()
+#     id = len(cursor.execute("SELECT * FROM res").fetchall())
+#     with connection:
+#         cursor = connection.cursor()
+#         cursor.execute(
+#             """INSERT INTO res (id, data, roomscount, zapolnenieRooms, dataForWindows)
+#             VALUES  (?, ?, ?, ?, ?)""",
+#             (id, ans["date"]["data"], ans["flats_count"]["data"], windows_for_rooms, s1))
+#         connection.commit()
+#     print(cursor.execute("SELECT * FROM res").fetchall())
 
 
 data = getTT(day, month, year)
-insertINtoBD(data)
+# insertINtoBD(data)
 print(data)
 
 
