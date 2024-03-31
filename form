@@ -1,0 +1,61 @@
+<h1>Форма для отправки данных на сервер</h1>
+    <form id="myForm">
+        <input type="text" id="name" name="name"><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+            let formData = new FormData(this); // Получаем данные формы
+
+            fetch('example.py', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Ошибка при отправке данных на сервер!');
+            })
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Произошла ошибка:', error);
+            });
+        });
+    </script>
+
+
+
+
+
+python :
+
+import cgi
+
+form = cgi.FieldStorage()
+name = form.getvalue('name')
+email = form.getvalue('email')
+
+print("Content-Type: text/html\n")
+print(f"Данные успешно получены: Имя - {name}, Email - {email}")
+
+или !!!
+
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/', methods=['POST'])
+def get_data():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    
+    return f'Данные успешно получены: Имя - {name}, Email - {email}'
+
+if __name__ == '__main__':
+    app.run(debug=True)
