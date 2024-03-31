@@ -36,5 +36,36 @@
         <p>вывод массива комнат номеров: </p> // пишешь вывод после
     </table>
 
+    <h1>Форма для отправки данных на сервер</h1>
+    <form id="myForm">
+        <input type="text" id="name" name="name"><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+            let formData = new FormData(this); // Получаем данные формы
+
+            fetch('example.py', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Ошибка при отправке данных на сервер!');
+            })
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Произошла ошибка:', error);
+            });
+        });
+    </script>
+
 </body>
 </html>
