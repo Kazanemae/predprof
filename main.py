@@ -30,7 +30,7 @@ def get_info(date: str): #dd-mm-yy
             room += 1
             for __ in range(windows_for_room):
                 room_list.append(room)
-    window_list.append(room_list)
+        window_list.append(room_list)
 
     return window_list
     # data_to_return = {
@@ -40,3 +40,7 @@ def get_info(date: str): #dd-mm-yy
 
 
     # }
+
+
+print(get_info('25-01-23'))
+# [[1, 1, 1, 2, 2, 3], [4, 4, 4, 5, 5, 6], [7, 7, 7, 8, 8, 9], [10, 10, 10, 11, 11, 12]]
