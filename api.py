@@ -16,13 +16,13 @@ def get_date_info(day, month, year):
     req = get(f'https://olimp.miet.ru/ppo_it_final?day={day}&month={month}&year={year}', headers=HEADERS)
     data = req.json()['message']
 
-    rooms_count = data['flats_count']['data']
-    windows_for_room_list = data['windows_for_flat']['data']
+    flats_count = data['flats_count']['data']
+    windows_for_flat = data['windows_for_flat']['data']
     windows_dict = data['windows']['data']
 
     return_data = {
-        'rooms_count': rooms_count,
-        'windows_for_room_list': windows_for_room_list,
+        'flats_count': flats_count,
+        'windows_for_flat': windows_for_flat,
         'windows_dict': windows_dict
     }
 
