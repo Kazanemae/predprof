@@ -1,17 +1,22 @@
-.container table {
-    border: 2px solid black; /* Черный контур толщиной 2px */
-    border-collapse: collapse; /* Объединение границ */
-    width: 100%; /* Ширина таблицы 100% */
+table 
+{
+    border-collapse: collapse;
 }
-
-.container td {
-    border: 1px solid black; /* Черная рамка вокруг ячеек толщиной 1px */
-    padding: 10px; /* Отступ внутри ячеек */
-    text-align: center; /* Выравнивание текста по центру */
+table, th, td 
+{
+    border: 1px solid black;
 }
-
-.container th {
-    border: 1px solid black; /* Черная рамка вокруг заголовков ячеек */
-    padding: 10px; /* Отступ внутри ячеек */
-    text-align: center; /* Выравнивание текста по центру */
+td 
+{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+.light-on 
+{
+    background-color: yellow;
+}
+.light-off 
+{
+    background-color: white;
 }
