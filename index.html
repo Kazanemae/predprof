@@ -10,21 +10,8 @@
     <div class="container">
         <h1>Student Rehearsal Rooms Information</h1>
         
-        <!-- Python-generated table will be inserted here -->
+        <sript src='https://github.com/Kazanemae/predprof/blob/main/script.js'></sript>
         <div id="table-container"></div>
     </div>
-
-    <script>
-        // Load Python script dynamically
-        const script = document.createElement('script');
-        script.src = 'src.py';
-        document.body.appendChild(script);
-
-        // Callback function to handle Python-generated table data
-        function handlePythonTableData(data) {
-            let pythonGeneratedTable = data;
-            document.getElementById('table-container').innerHTML = pythonGeneratedTable;
-        }
-    </script>
 </body>
 </html>
