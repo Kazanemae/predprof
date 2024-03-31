@@ -1,5 +1,4 @@
 from requests import get, post
-from json import dumps
 
 
 TOKEN = 'ppo_9_30000'
@@ -42,6 +41,7 @@ def post_answer(rooms: list[int], date: str):
         }
     print(data)
     req = post(f'https://olimp.miet.ru/ppo_it_final', headers=HEADERS, data=data)
+    print(req.json())
 
     answer = req.json()['message']
 
